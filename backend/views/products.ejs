@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Product Master</h2>
+
+<!-- ADD PRODUCT -->
+<form method="POST" action="/products/add">
+  <input name="product_name" placeholder="Product Name" required />
+  <input name="category_id" placeholder="Category ID" required />
+  <button type="submit">Add</button>
+</form>
+
+<table border="1">
+  <% products.forEach(p => { %>
+    <tr>
+      <td><%= p.product_id %></td>
+
+      <td colspan="4">
+        <!-- UPDATE PRODUCT -->
+        <form method="POST" action="/products/edit/<%= p.product_id %>">
+          <input name="product_name"
+                 value="<%= p.product_name %>"
+                 required />
+
+          <input name="category_id"
+                 value="<%= p.category_id %>"
+                 required />
+
+          <span><%= p.category_name %></span>
+
+          <button type="submit">Update</button>
+
+          <a href="/products/delete/<%= p.product_id %>">Delete</a>
+        </form>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<br/>
+
+<a href="/products?page=<%= page - 1 %>">Prev</a>
+&nbsp;
+<a href="/products?page=<%= page + 1 %>">Next</a>
+
+</body>
+</html>

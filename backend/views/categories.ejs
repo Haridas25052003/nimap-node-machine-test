@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Category Master</h2>
+
+<!-- ADD CATEGORY -->
+<form method="POST" action="/categories/add">
+  <input name="category_name" placeholder="Category Name" required />
+  <button type="submit">Add</button>
+</form>
+
+<table border="1">
+  <% categories.forEach(c => { %>
+    <tr>
+      <td><%= c.category_id %></td>
+
+      <td>
+        <!-- UPDATE CATEGORY -->
+        <form method="POST" action="/categories/edit/<%= c.category_id %>">
+          <input name="category_name"
+                 value="<%= c.category_name %>"
+                 required />
+          <button type="submit">Update</button>
+        </form>
+      </td>
+
+      <td>
+        <a href="/categories/delete/<%= c.category_id %>">Delete</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+</body>
+</html>
