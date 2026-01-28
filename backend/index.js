@@ -3,6 +3,7 @@ const express=require('express');
 const bodyParser=require('body-parser');
 const app=express();
 const categoryRoutes = require('./routes/category.routes');
+const productRoutes = require('./routes/product.routes');
 app.set('view engine', 'ejs');
 
 
@@ -11,6 +12,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static('public'));
 app.use('/categories', categoryRoutes);
+app.use('/products', productRoutes);
 
 
 
